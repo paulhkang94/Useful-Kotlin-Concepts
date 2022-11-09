@@ -1,7 +1,9 @@
 package mappers
 
+/**
+ *  various shortcuts for converting array to map of (element : frequency)
+ */
 object PopulateMap {
-    // shortcut for converting array to map of (element : frequency)
     fun IntArray.toFrequencyMap(): Map<Int, Int> {
         val map = hashMapOf<Int, Int>()
 
@@ -12,5 +14,8 @@ object PopulateMap {
         }
 
         return map
+    }
+    fun <T> Array<T>.toFrequencyMap(): Map<T, Int> {
+        return this.groupingBy { it }.eachCount()
     }
 }
