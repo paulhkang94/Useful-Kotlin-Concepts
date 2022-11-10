@@ -15,7 +15,16 @@ object PopulateMap {
 
         return map
     }
+    
     fun <T> Array<T>.toFrequencyMap(): Map<T, Int> {
         return this.groupingBy { it }.eachCount()
+    }
+
+    fun <T> MutableMap<T, Int>.incrementCount(element: T) {
+        this[element] = this.getOrPut(element) { 0 } + 1
+    }
+
+    fun <T, S> MutableMap<T, MutableList<S>>.increment(key: T, value: S) {
+        this.computeIfAbsent(key) { mutableListOf() }.add(value)
     }
 }
